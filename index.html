@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Area Studente</title>
+  <link rel="apple-touch-icon" href="icona.png.PNG">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"> 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root{
@@ -48,18 +51,21 @@
     }
 
     .topbar{
-      background:var(--blue);
-      color:#fff;
-      height:110px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      padding:0 18px 18px;
-      position:sticky;
-      top:0;
-      z-index:20;
-      box-shadow:0 1px 0 rgba(255,255,255,.05);
-    }
+  background:var(--blue);
+  color:#fff;
+  height:110px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0 18px 18px;
+  position:fixed;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(430px,100%);
+  z-index:100;
+  box-shadow:0 1px 0 rgba(255,255,255,.05);
+}
 
     .topbar-title{
       font-size:27px;
@@ -70,7 +76,7 @@
     }
 
     .content{
-      padding:0 0 20px;
+      padding:110px 0 20px;
     }
 
     .section{
@@ -977,5 +983,27 @@
       }
     });
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const tabs = document.querySelectorAll("[data-page]");
+  
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      localStorage.setItem("lastPage", tab.dataset.page);
+    });
+  });
+
+  const savedPage = localStorage.getItem("lastPage");
+
+  if(savedPage){
+    const page = document.querySelector('[data-page="'+savedPage+'"]');
+    if(page){
+      page.click();
+    }
+  }
+
+});
+</script>
 </body>
 </html>
