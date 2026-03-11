@@ -6,8 +6,9 @@
   <title>Area Studente</title>
   <link rel="apple-touch-icon" sizes="180x180" href="IMG_5733.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     :root{
       --blue:#004f96;
@@ -40,29 +41,30 @@
       justify-content:center;
     }
 
-   .phone{
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  background:var(--bg);
-  position:relative;
-  overflow-x:hidden;
-  padding-bottom:calc(92px + env(safe-area-inset-bottom));
-}
+    .phone{
+      width:100%;
+      max-width:430px;
+      min-height:100vh;
+      background:var(--bg);
+      position:relative;
+      overflow-x:hidden;
+      padding-bottom:calc(92px + env(safe-area-inset-bottom));
+      display:none;
+    }
 
-   .topbar{
-  background:var(--blue);
-  color:#fff;
-  height:90px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding:0 18px 12px;
-  position:sticky;
-  top:0;
-  z-index:20;
-  box-shadow:0 1px 0 rgba(255,255,255,.05);
-}
+    .topbar{
+      background:var(--blue);
+      color:#fff;
+      min-height:90px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding:20px 18px 12px;
+      position:sticky;
+      top:0;
+      z-index:50;
+      box-shadow:0 1px 0 rgba(255,255,255,.05);
+    }
 
     .topbar-title{
       font-size:27px;
@@ -72,8 +74,67 @@
       letter-spacing:.2px;
     }
 
+    .menu-btn{
+      position:absolute;
+      right:14px;
+      bottom:12px;
+      width:38px;
+      height:38px;
+      border:none;
+      border-radius:10px;
+      background:#ffffff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      cursor:pointer;
+      box-shadow:0 1px 4px rgba(0,0,0,.12);
+    }
+
+    .menu-btn span{
+      width:18px;
+      height:2px;
+      background:var(--blue);
+      display:block;
+      border-radius:2px;
+    }
+
+    .topbar-menu{
+      position:absolute;
+      right:14px;
+      top:78px;
+      background:#fff;
+      border:1px solid #d8d8d8;
+      border-radius:12px;
+      box-shadow:0 8px 20px rgba(0,0,0,.14);
+      min-width:140px;
+      overflow:hidden;
+      display:none;
+      z-index:60;
+    }
+
+    .topbar-menu.open{
+      display:block;
+    }
+
+    .menu-item{
+      width:100%;
+      border:none;
+      background:#fff;
+      text-align:left;
+      padding:14px 14px;
+      font-size:16px;
+      cursor:pointer;
+      color:#222;
+    }
+
+    .menu-item:active{
+      background:#f2f2f2;
+    }
+
     .content{
-      padding:20px 0 20px;
+      padding:16px 0 20px;
     }
 
     .section{
@@ -95,8 +156,9 @@
       gap:16px;
       align-items:center;
       padding:16px 14px;
-      margin-top:-10px;
-      margin-bottom:26px;
+      margin-top:0;
+      margin-bottom:22px;
+      flex-wrap:wrap;
     }
 
     .pdf-icon{
@@ -137,7 +199,7 @@
       text-align:center;
       font-size:24px;
       font-weight:800;
-      margin:6px 0 26px;
+      margin:6px 0 22px;
       color:#000;
     }
 
@@ -154,29 +216,29 @@
     .study-head{
       background:var(--blue);
       color:#fff;
-      padding:14px 16px 13px;
+      padding:10px 14px 9px;
     }
 
     .study-course{
-      font-size:19px;
+      font-size:18px;
       text-transform:uppercase;
       line-height:1.2;
       letter-spacing:.2px;
     }
 
     .study-year{
-      font-size:17px;
-      margin-top:8px;
+      font-size:16px;
+      margin-top:6px;
       opacity:.96;
     }
 
     .study-body{
-      padding:16px 14px 18px;
+      padding:12px 10px 12px;
       background:#f7f7f8;
     }
 
     .exam-row{
-      margin-bottom:19px;
+      margin-bottom:12px;
     }
 
     .exam-row:last-child{
@@ -184,15 +246,15 @@
     }
 
     .exam-code{
-      font-size:18px;
+      font-size:17px;
       font-style:italic;
-      margin-bottom:3px;
+      margin-bottom:2px;
     }
 
     .exam-title{
-      font-size:19px;
+      font-size:18px;
       font-weight:800;
-      line-height:1.24;
+      line-height:1.18;
       text-transform:uppercase;
     }
 
@@ -211,7 +273,7 @@
     .tab{
       flex:1;
       text-align:center;
-      padding:22px 10px 16px;
+      padding:20px 10px 15px;
       font-size:17px;
       color:#787878;
       position:relative;
@@ -250,7 +312,7 @@
     }
 
     .subpage{
-      padding:18px 16px 22px;
+      padding:16px 14px 22px;
     }
 
     .book-panel{
@@ -262,47 +324,136 @@
     }
 
     .book-card{
-      padding:18px 18px 20px;
-      margin-bottom:16px;
+      padding:12px 12px 10px;
+      margin-bottom:8px;
       position:relative;
+    }
+
+    .book-main{
+      position:relative;
+      min-height:62px;
+      padding-right:56px;
     }
 
     .book-title{
       color:var(--blue);
-      font-size:19px;
+      font-size:17px;
       font-weight:800;
-      line-height:1.18;
+      line-height:1.08;
       text-transform:uppercase;
-      margin-bottom:12px;
-      padding-right:70px;
+      margin-bottom:4px;
     }
 
     .book-code{
-      font-size:18px;
-      line-height:1.25;
-      margin-bottom:10px;
+      font-size:16px;
+      line-height:1.2;
+      margin-bottom:0;
+      color:#222;
     }
 
     .book-cfu{
-      font-size:18px;
+      font-size:16px;
       font-weight:700;
       line-height:1.2;
     }
 
-    .vote-pill{
+    .vote-area{
       position:absolute;
-      right:18px;
-      top:18px;
-      width:58px;
-      height:66px;
-      border-radius:18px;
+      right:0;
+      top:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      gap:6px;
+    }
+
+    .vote-pill{
+      width:46px;
+      height:52px;
+      border-radius:14px;
       background:var(--blue-2);
       color:#fff;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:24px;
+      font-size:21px;
       font-weight:800;
+      flex-shrink:0;
+    }
+
+    .expand-btn{
+      width:24px;
+      height:24px;
+      border:none;
+      background:transparent;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      color:var(--blue-2);
+    }
+
+    .expand-btn::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-right:2.2px solid currentColor;
+      border-bottom:2.2px solid currentColor;
+      transform:rotate(45deg) translateY(-1px);
+      transition:transform .2s ease;
+      display:block;
+    }
+
+    .book-card.open .expand-btn::before{
+      transform:rotate(-135deg) translateY(-1px);
+    }
+
+    .book-details{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease, margin-top .25s ease, padding-top .25s ease;
+      margin-top:0;
+      padding-top:0;
+      border-top:1px solid transparent;
+    }
+
+    .book-card.open .book-details{
+      max-height:70px;
+      margin-top:8px;
+      padding-top:8px;
+      border-top:1px solid #e1e1e1;
+    }
+
+    .details-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:16px;
+      color:#333;
+    }
+
+    .details-label{
+      color:#6b6b6b;
+    }
+
+    .details-value{
+      font-weight:700;
+      color:var(--blue-2);
+    }
+
+    .book-card.no-vote .book-main{
+      padding-right:0;
+      min-height:auto;
+    }
+
+    .book-card.no-vote .book-title{
+      margin-bottom:6px;
+    }
+
+    .book-card.no-vote .book-cfu{
+      color:#333;
     }
 
     .empty-wrap{
@@ -380,8 +531,8 @@
     }
 
     .donut-box canvas{
-      width:260px !important;
-      height:260px !important;
+      width:min(260px, 70vw) !important;
+      height:min(260px, 70vw) !important;
       max-width:260px;
       max-height:260px;
     }
@@ -443,22 +594,22 @@
 
     .line-wrap canvas{
       width:100% !important;
-      height:290px !important;
+      height:clamp(220px, 45vw, 290px) !important;
     }
 
     .bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(430px,100%);
-  background:#f8f8f8;
-  border-top:1px solid #d4d4d4;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0 calc(8px + env(safe-area-inset-bottom));
-  z-index:40;
-}
+      position:fixed;
+      bottom:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(430px,100%);
+      background:#f8f8f8;
+      border-top:1px solid #d4d4d4;
+      display:flex;
+      justify-content:space-around;
+      padding:10px 0 calc(8px + env(safe-area-inset-bottom));
+      z-index:40;
+    }
 
     .nav-btn{
       flex:1;
@@ -485,7 +636,7 @@
     }
 
     .nav-label{
-      font-size:15px;
+      font-size:14px;
       line-height:1.08;
     }
 
@@ -493,7 +644,6 @@
       font-weight:700;
     }
 
-    /* Icone stile app */
     .icon-file::before,
     .icon-book::before,
     .icon-cal::before,
@@ -578,30 +728,170 @@
       transform:rotate(45deg);
     }
 
+    .login-screen{
+      position:fixed;
+      inset:0;
+      background:#ececee;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      z-index:200;
+    }
+
+    .login-wrap{
+      width:100%;
+      max-width:430px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px 0;
+    }
+
+    .login-card{
+      width:100%;
+      background:#f7f7f8;
+      border:1px solid #dddddf;
+      border-radius:24px;
+      box-shadow:0 8px 22px rgba(0,0,0,.12);
+      padding:28px 22px 24px;
+    }
+
+    .login-title{
+      margin:0 0 24px;
+      text-align:center;
+      color:var(--blue);
+      font-size:30px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .login-subtitle{
+      margin:0 0 22px;
+      text-align:center;
+      color:#4f4f4f;
+      font-size:16px;
+      line-height:1.35;
+    }
+
+    .login-input{
+      width:100%;
+      border:1px solid #d6d6d8;
+      border-radius:14px;
+      padding:15px 14px;
+      font-size:16px;
+      outline:none;
+      margin-bottom:14px;
+      background:#fff;
+    }
+
+    .login-input:focus{
+      border-color:var(--blue-2);
+    }
+
+    .login-btn{
+      width:100%;
+      border:none;
+      border-radius:14px;
+      background:var(--blue);
+      color:#fff;
+      font-size:18px;
+      font-weight:700;
+      padding:15px 14px;
+      cursor:pointer;
+      margin-top:6px;
+    }
+
+    .login-error{
+      margin-top:12px;
+      min-height:20px;
+      text-align:center;
+      color:var(--red);
+      font-size:15px;
+    }
+
     @media (max-width:380px){
       .topbar{
-        height:128px;
-        padding-bottom:22px;
+        min-height:84px;
+        padding:16px 14px 10px;
       }
+
       .topbar-title{
         font-size:24px;
       }
+
+      .inner,
+      .subpage{
+        padding-left:12px;
+        padding-right:12px;
+      }
+
       .year-label{
-        font-size:22px;
+        font-size:20px;
       }
-      .exam-title,.book-title{
-        font-size:18px;
+
+      .exam-title,
+      .book-title{
+        font-size:17px;
       }
+
+      .book-code,
+      .book-cfu,
+      .exam-code{
+        font-size:16px;
+      }
+
+      .vote-pill{
+        width:42px;
+        height:48px;
+        font-size:19px;
+        border-radius:12px;
+      }
+
       .empty-text{
+        font-size:24px;
+      }
+
+      .nav-label{
+        font-size:13px;
+      }
+
+      .login-title{
         font-size:26px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="phone">
+
+  <!-- LOGIN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-wrap">
+      <div class="login-card">
+        <h1 class="login-title">Area Studente</h1>
+        <p class="login-subtitle">Inserisci matricola e password per accedere.</p>
+        <input type="text" id="username" class="login-input" placeholder="Matricola">
+        <input type="password" id="password" class="login-input" placeholder="Password">
+        <button id="loginBtn" class="login-btn">Accedi</button>
+        <div id="loginError" class="login-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone" id="appScreen">
     <header class="topbar">
       <div class="topbar-title" id="pageTitle">Piano Studio</div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Apri menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="topbar-menu" id="topbarMenu">
+        <button class="menu-item" id="logoutBtn">Esci</button>
+      </div>
     </header>
 
     <main class="content">
@@ -637,7 +927,7 @@
 
               <div class="exam-row">
                 <div class="exam-code">B018934</div>
-                <div class="exam-title">ARCHITETTURE DEGLI ELABORATI <em>(Obbligatoria)</em></div>
+                <div class="exam-title">ARCHITETTURE DEGLI ELABORATORI <em>(Obbligatoria)</em></div>
               </div>
 
               <div class="exam-row">
@@ -668,42 +958,58 @@
 
         <div class="subpage">
           <div class="book-panel active" id="libretto-superati">
-            <div class="book-card">
-              <div class="book-title">ALGORITMI E STRUTTURE DATI</div>
-              <div class="book-code"><strong>Codice AD:</strong> B018956</div>
-              <div class="book-cfu">6 CFU</div>
-              <div class="vote-pill">24</div>
+            <div class="book-card expandable">
+              <div class="book-main">
+                <div class="book-title">ALGORITMI E STRUTTURE DATI</div>
+                <div class="vote-area">
+                  <div class="vote-pill">24</div>
+                  <button class="expand-btn" type="button" aria-label="Mostra crediti"></button>
+                </div>
+              </div>
+
+              <div class="book-details">
+                <div class="details-row">
+                  <span class="details-label">Crediti</span>
+                  <span class="details-value">6 CFU</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="book-panel" id="libretto-pianificati">
-            <div class="book-card">
-              <div class="book-title">ARCHITETTURE DEGLI ELABORATI</div>
-              <div class="book-code"><strong>Codice AD:</strong> B018934</div>
-              <div class="book-cfu">9 CFU</div>
+            <div class="book-card no-vote">
+              <div class="book-main">
+                <div class="book-title">ARCHITETTURE DEGLI ELABORATORI</div>
+                <div class="book-cfu">9 CFU</div>
+              </div>
             </div>
 
-            <div class="book-card">
-              <div class="book-title">LINGUA INGLESE</div>
-              <div class="book-cfu">3 CFU</div>
+            <div class="book-card no-vote">
+              <div class="book-main">
+                <div class="book-title">LINGUA INGLESE</div>
+                <div class="book-cfu">3 CFU</div>
+              </div>
             </div>
 
-            <div class="book-card">
-              <div class="book-title">PROGRAMMAZIONE</div>
-              <div class="book-code"><strong>Codice AD:</strong> B018865</div>
-              <div class="book-cfu">9 CFU</div>
+            <div class="book-card no-vote">
+              <div class="book-main">
+                <div class="book-title">PROGRAMMAZIONE</div>
+                <div class="book-cfu">9 CFU</div>
+              </div>
             </div>
 
-            <div class="book-card">
-              <div class="book-title">CALCOLO DIFFERENZIALE E INTEGRALE</div>
-              <div class="book-code"><strong>Codice AD:</strong> B018962</div>
-              <div class="book-cfu">8 CFU</div>
+            <div class="book-card no-vote">
+              <div class="book-main">
+                <div class="book-title">CALCOLO DIFFERENZIALE E INTEGRALE</div>
+                <div class="book-cfu">8 CFU</div>
+              </div>
             </div>
 
-            <div class="book-card">
-              <div class="book-title">MATEMATICA DISCRETA E LOGICA</div>
-              <div class="book-code"><strong>Codice AD:</strong> B018970</div>
-              <div class="book-cfu">6 CFU</div>
+            <div class="book-card no-vote">
+              <div class="book-main">
+                <div class="book-title">MATEMATICA DISCRETA E LOGICA</div>
+                <div class="book-cfu">6 CFU</div>
+              </div>
             </div>
           </div>
         </div>
@@ -815,6 +1121,84 @@
   </div>
 
   <script>
+    // LOGIN
+    const loginScreen = document.getElementById('loginScreen');
+    const appScreen = document.getElementById('appScreen');
+    const loginBtn = document.getElementById('loginBtn');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const loginError = document.getElementById('loginError');
+
+    const DEMO_USER = "7083019";
+    const DEMO_PASS = "Rora2002";
+
+    function showApp() {
+      loginScreen.style.display = 'none';
+      appScreen.style.display = 'block';
+    }
+
+    function showLogin() {
+      loginScreen.style.display = 'flex';
+      appScreen.style.display = 'none';
+    }
+
+    if (localStorage.getItem('loggedIn') === 'true') {
+      showApp();
+    } else {
+      showLogin();
+    }
+
+    loginBtn.addEventListener('click', () => {
+      const user = usernameInput.value.trim();
+      const pass = passwordInput.value.trim();
+
+      if (user === DEMO_USER && pass === DEMO_PASS) {
+        localStorage.setItem('loggedIn', 'true');
+        loginError.textContent = '';
+        showApp();
+      } else {
+        loginError.textContent = 'Credenziali non corrette';
+      }
+    });
+
+    passwordInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        loginBtn.click();
+      }
+    });
+
+    usernameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        loginBtn.click();
+      }
+    });
+
+    // MENU IN ALTO
+    const menuBtn = document.getElementById('menuBtn');
+    const topbarMenu = document.getElementById('topbarMenu');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      topbarMenu.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!topbarMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        topbarMenu.classList.remove('open');
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('loggedIn');
+      usernameInput.value = '';
+      passwordInput.value = '';
+      loginError.textContent = '';
+      topbarMenu.classList.remove('open');
+      showLogin();
+    });
+
+    // NAVIGAZIONE SEZIONI + SALVATAGGIO ULTIMA PAGINA
     const pageTitle = document.getElementById('pageTitle');
     const navButtons = document.querySelectorAll('.nav-btn');
     const sections = {
@@ -824,20 +1208,38 @@
       cruscotto: document.getElementById('section-cruscotto')
     };
 
+    function openSection(sectionName, title) {
+      navButtons.forEach(b => b.classList.remove('active'));
+      Object.values(sections).forEach(sec => sec.classList.remove('active'));
+
+      const activeBtn = document.querySelector(`.nav-btn[data-section="${sectionName}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (sections[sectionName]) {
+        sections[sectionName].classList.add('active');
+      }
+
+      pageTitle.textContent = title || 'Area Studente';
+    }
+
     navButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        navButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        const section = btn.dataset.section;
+        const title = btn.dataset.title;
 
-        Object.values(sections).forEach(sec => sec.classList.remove('active'));
-        sections[btn.dataset.section].classList.add('active');
-
-        pageTitle.textContent = btn.dataset.title;
+        openSection(section, title);
+        localStorage.setItem('lastPage', section);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
-    // Tabs Libretto
+    const savedPage = localStorage.getItem('lastPage');
+    if (savedPage && sections[savedPage]) {
+      const savedBtn = document.querySelector(`.nav-btn[data-section="${savedPage}"]`);
+      openSection(savedPage, savedBtn?.dataset.title || 'Area Studente');
+    }
+
+    // TABS LIBRETTO
     const librettoTabs = document.querySelectorAll('[data-libretto]');
     const libSuperati = document.getElementById('libretto-superati');
     const libPianificati = document.getElementById('libretto-pianificati');
@@ -857,7 +1259,7 @@
       });
     });
 
-    // Tabs Calendario
+    // TABS CALENDARIO
     const calTabs = document.querySelectorAll('[data-cal]');
     const calPrenotabili = document.getElementById('cal-prenotabili');
     const calPrenotati = document.getElementById('cal-prenotati');
@@ -877,7 +1279,17 @@
       });
     });
 
-    // Donut chart
+    // ESPANSIONE CFU SOLO IN LIBRETTO SUPERATI
+    const expandableCards = document.querySelectorAll('.book-card.expandable');
+
+    expandableCards.forEach(card => {
+      const btn = card.querySelector('.expand-btn');
+      btn.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+
+    // DONUT CHART
     const donutCtx = document.getElementById('donutChart').getContext('2d');
     new Chart(donutCtx, {
       type: 'doughnut',
@@ -903,7 +1315,7 @@
       }
     });
 
-    // Line chart
+    // LINE CHART
     const lineCtx = document.getElementById('lineChart').getContext('2d');
     new Chart(lineCtx, {
       type: 'line',
@@ -980,47 +1392,5 @@
       }
     });
   </script>
- <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const pageTitle = document.getElementById("pageTitle");
-
-  const sections = {
-    piano: document.getElementById("section-piano"),
-    libretto: document.getElementById("section-libretto"),
-    calendario: document.getElementById("section-calendario"),
-    cruscotto: document.getElementById("section-cruscotto")
-  };
-
-  function openSection(sectionName, title) {
-    navButtons.forEach(btn => btn.classList.remove("active"));
-    Object.values(sections).forEach(sec => sec.classList.remove("active"));
-
-    const activeBtn = document.querySelector(`.nav-btn[data-section="${sectionName}"]`);
-    const activeSection = sections[sectionName];
-
-    if (activeBtn) activeBtn.classList.add("active");
-    if (activeSection) activeSection.classList.add("active");
-    if (title) pageTitle.textContent = title;
-  }
-
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const section = btn.dataset.section;
-      const title = btn.dataset.title;
-
-      openSection(section, title);
-      localStorage.setItem("lastPage", section);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  });
-
-  const savedPage = localStorage.getItem("lastPage");
-  if (savedPage && sections[savedPage]) {
-    const savedBtn = document.querySelector(`.nav-btn[data-section="${savedPage}"]`);
-    openSection(savedPage, savedBtn?.dataset.title || "Area Studente");
-  }
-});
-</script>
 </body>
 </html>
