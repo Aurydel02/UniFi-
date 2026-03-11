@@ -73,7 +73,7 @@
     }
 
     .content{
-      padding:95px 0 20px;
+      padding:20px 0 20px;
     }
 
     .section{
@@ -980,26 +980,46 @@
       }
     });
   </script>
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function() {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const pageTitle = document.getElementById("pageTitle");
 
-  const tabs = document.querySelectorAll("[data-page]");
-  
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      localStorage.setItem("lastPage", tab.dataset.page);
+  const sections = {
+    piano: document.getElementById("section-piano"),
+    libretto: document.getElementById("section-libretto"),
+    calendario: document.getElementById("section-calendario"),
+    cruscotto: document.getElementById("section-cruscotto")
+  };
+
+  function openSection(sectionName, title) {
+    navButtons.forEach(btn => btn.classList.remove("active"));
+    Object.values(sections).forEach(sec => sec.classList.remove("active"));
+
+    const activeBtn = document.querySelector(`.nav-btn[data-section="${sectionName}"]`);
+    const activeSection = sections[sectionName];
+
+    if (activeBtn) activeBtn.classList.add("active");
+    if (activeSection) activeSection.classList.add("active");
+    if (title) pageTitle.textContent = title;
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const section = btn.dataset.section;
+      const title = btn.dataset.title;
+
+      openSection(section, title);
+      localStorage.setItem("lastPage", section);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
   const savedPage = localStorage.getItem("lastPage");
-
-  if(savedPage){
-    const page = document.querySelector('[data-page="'+savedPage+'"]');
-    if(page){
-      page.click();
-    }
+  if (savedPage && sections[savedPage]) {
+    const savedBtn = document.querySelector(`.nav-btn[data-section="${savedPage}"]`);
+    openSection(savedPage, savedBtn?.dataset.title || "Area Studente");
   }
-
 });
 </script>
 </body>
