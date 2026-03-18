@@ -1334,11 +1334,10 @@ new Chart(lineCtx, {
         borderColor: '#0b5aa5',
         backgroundColor: '#0b5aa5',
         pointBackgroundColor: '#0b5aa5',
-        pointBorderColor: '#ffffff',
-        pointBorderWidth: 2,
-        pointRadius: 6,
-        pointHoverRadius: 6,
-        borderWidth: 2.5,
+        pointBorderColor: '#0b5aa5',
+        pointRadius: 4.5,
+        pointHoverRadius: 4.5,
+        borderWidth: 2,
         tension: 0,
         fill: false
       },
@@ -1348,7 +1347,6 @@ new Chart(lineCtx, {
         borderColor: '#c80000',
         backgroundColor: '#c80000',
         pointRadius: 0,
-        pointHoverRadius: 0,
         borderWidth: 2,
         tension: 0,
         fill: false
@@ -1359,7 +1357,6 @@ new Chart(lineCtx, {
         borderColor: '#8a8a8a',
         backgroundColor: '#8a8a8a',
         pointRadius: 0,
-        pointHoverRadius: 0,
         borderWidth: 2,
         tension: 0,
         fill: false
@@ -1372,29 +1369,17 @@ new Chart(lineCtx, {
     plugins: {
       legend: {
         display: true,
-        position: 'top',
-        align: 'center',
         labels: {
           usePointStyle: true,
-          pointStyle: 'line',
-          boxWidth: 18,
-          boxHeight: 3,
+          boxWidth: 10,
           color: '#333',
           font: {
-            size: 15
+            size: 16
           },
-          padding: 16
+          padding: 20
         }
       },
       tooltip: { enabled: true }
-    },
-    layout: {
-      padding: {
-        top: 8,
-        left: 6,
-        right: 6,
-        bottom: 0
-      }
     },
     scales: {
       x: {
@@ -1404,19 +1389,19 @@ new Chart(lineCtx, {
       },
       y: {
         min: 18,
-        max: 24,
+        max: 30,
         ticks: {
-          stepSize: 1,
+          stepSize: 2,
           color: '#666',
           font: {
-            size: 14
+            size: 15
           },
-          padding: 8
+          padding: 10
         },
         border: { display: false },
         grid: {
           color: '#d6d6d6',
-          lineWidth: 1
+          lineWidth: 1.2
         }
       }
     }
