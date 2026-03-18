@@ -1295,7 +1295,7 @@
       });
     }
 
-    bindExpandableCards();
+            bindExpandableCards();
 
     const donutCtx = document.getElementById('donutChart').getContext('2d');
     new Chart(donutCtx, {
@@ -1322,106 +1322,103 @@
       }
     });
 
-    <script>
-const lineCtx = document.getElementById('lineChart').getContext('2d');
-
-new Chart(lineCtx, {
-  type: 'line',
-  data: {
-    labels: ['', ''],
-    datasets: [
-      {
-        label: 'Voto',
-        data: [24, 18],
-        borderColor: '#0b5aa5',
-        backgroundColor: '#0b5aa5',
-        pointBackgroundColor: '#0b5aa5',
-        pointBorderColor: '#ffffff',
-        pointBorderWidth: 2,
-        pointRadius: 6,
-        pointHoverRadius: 6,
-        borderWidth: 2.5,
-        tension: 0,
-        fill: false
-      },
-      {
-        label: 'Media',
-        data: [21, 21],
-        borderColor: '#c80000',
-        backgroundColor: '#c80000',
-        borderWidth: 2,
-        pointRadius: 0,
-        tension: 0,
-        fill: false
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        align: 'center',
-        labels: {
-          usePointStyle: true,
-          pointStyle: 'circle',
-          boxWidth: 10,
-          padding: 20,
-          color: '#333',
-          font: {
-            size: 16,
-            weight: '500'
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['', ''],
+        datasets: [
+          {
+            label: 'Voto',
+            data: [24, 18],
+            borderColor: '#0b5aa5',
+            backgroundColor: '#0b5aa5',
+            pointBackgroundColor: '#0b5aa5',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 6,
+            borderWidth: 2.5,
+            tension: 0,
+            fill: false
+          },
+          {
+            label: 'Media',
+            data: [21, 21],
+            borderColor: '#c80000',
+            backgroundColor: '#c80000',
+            borderWidth: 2,
+            pointRadius: 0,
+            tension: 0,
+            fill: false
           }
-        }
+        ]
       },
-      tooltip: {
-        enabled: true
-      }
-    },
-    layout: {
-      padding: {
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 0
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false
-        },
-        border: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: 20,
-        max: 30,
-        ticks: {
-          stepSize: 2,
-          color: '#7a7a7a',
-          font: {
-            size: 14
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'center',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              boxWidth: 10,
+              padding: 20,
+              color: '#333',
+              font: {
+                size: 16,
+                weight: '500'
+              }
+            }
+          },
+          tooltip: {
+            enabled: true
           }
         },
-        grid: {
-          color: '#e0e0e0',
-          lineWidth: 1
+        layout: {
+          padding: {
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: 0
+          }
         },
-        border: {
-          display: false
+        scales: {
+          x: {
+            grid: {
+              display: false
+            },
+            border: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          },
+          y: {
+            min: 20,
+            max: 30,
+            ticks: {
+              stepSize: 2,
+              color: '#7a7a7a',
+              font: {
+                size: 14
+              }
+            },
+            grid: {
+              color: '#e0e0e0',
+              lineWidth: 1
+            },
+            border: {
+              display: false
+            }
+          }
         }
       }
-    }
-  }
-});
-</script>
+    });
   </script>
 </body>
 </html>
