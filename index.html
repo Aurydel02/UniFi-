@@ -497,7 +497,7 @@
 
     .progress-fill{
       height:100%;
-      width:1.67%;
+      width:3.33%;
       background:#c7d6ea;
     }
 
@@ -975,6 +975,24 @@
                 </div>
               </div>
             </div>
+
+            <div class="book-card expandable">
+              <div class="book-main">
+                <div class="book-title">MATEMATICA DISCRETA E LOGICA</div>
+                <div class="book-code"><strong>Codice AD:</strong> B018970</div>
+
+                <div class="vote-area">
+                  <div class="vote-pill">18</div>
+                  <button class="expand-btn" type="button" aria-label="Mostra crediti"></button>
+                </div>
+              </div>
+
+              <div class="book-details">
+                <div class="details-row">
+                  <span class="details-value">6 CFU</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="book-panel" id="libretto-pianificati">
@@ -1007,14 +1025,6 @@
                 <div class="book-title">CALCOLO DIFFERENZIALE E INTEGRALE</div>
                 <div class="book-code"><strong>Codice AD:</strong> B018962</div>
                 <div class="book-cfu">8 CFU</div>
-              </div>
-            </div>
-
-            <div class="book-card no-vote">
-              <div class="book-main">
-                <div class="book-title">MATEMATICA DISCRETA E LOGICA</div>
-                <div class="book-code"><strong>Codice AD:</strong> B018970</div>
-                <div class="book-cfu">6 CFU</div>
               </div>
             </div>
           </div>
@@ -1051,7 +1061,7 @@
             <div class="progress-bar">
               <div class="progress-fill"></div>
             </div>
-            <div class="progress-text">6 / 360</div>
+            <div class="progress-text">12 / 360</div>
           </div>
 
           <div class="dash-block">
@@ -1059,7 +1069,7 @@
             <div class="progress-bar">
               <div class="progress-fill"></div>
             </div>
-            <div class="progress-text">6 / 360</div>
+            <div class="progress-text">12 / 360</div>
           </div>
 
           <div class="dash-block">
@@ -1071,11 +1081,11 @@
             <div class="legend">
               <div class="legend-item">
                 <span class="legend-dot blue"></span>
-                1 Attività completate
+                2 Attività completate
               </div>
               <div class="legend-item">
                 <span class="legend-dot red"></span>
-                5 Attività pianificate da completare
+                4 Attività pianificate da completare
               </div>
             </div>
           </div>
@@ -1083,11 +1093,11 @@
           <div class="dash-block">
             <div class="media-row">
               <span>Media Aritmetica degli esami</span>
-              <span class="media-value">24.00</span>
+              <span class="media-value">21.00</span>
             </div>
             <div class="media-row">
               <span>Media Ponderata degli esami</span>
-              <span class="media-value">24.00</span>
+              <span class="media-value">21.00</span>
             </div>
           </div>
 
@@ -1274,14 +1284,18 @@
       });
     });
 
-    const expandableCards = document.querySelectorAll('.book-card.expandable');
+    function bindExpandableCards() {
+      const expandableCards = document.querySelectorAll('.book-card.expandable');
 
-    expandableCards.forEach(card => {
-      const btn = card.querySelector('.expand-btn');
-      btn.addEventListener('click', () => {
-        card.classList.toggle('open');
+      expandableCards.forEach(card => {
+        const btn = card.querySelector('.expand-btn');
+        btn.addEventListener('click', () => {
+          card.classList.toggle('open');
+        });
       });
-    });
+    }
+
+    bindExpandableCards();
 
     const donutCtx = document.getElementById('donutChart').getContext('2d');
     new Chart(donutCtx, {
@@ -1289,7 +1303,7 @@
       data: {
         labels: ['Attività completate', 'Attività pianificate da completare'],
         datasets: [{
-          data: [1, 5],
+          data: [2, 4],
           backgroundColor: ['#0b5aa5', '#c80000'],
           borderWidth: 0,
           hoverOffset: 0
@@ -1309,80 +1323,85 @@
     });
 
     const lineCtx = document.getElementById('lineChart').getContext('2d');
-new Chart(lineCtx, {
-  type: 'line',
-  data: {
-    labels: [''],
-    datasets: [
-      {
-        label: 'Voto',
-        data: [24],
-        borderColor: '#0b5aa5',
-        backgroundColor: '#0b5aa5',
-        pointBackgroundColor: '#0b5aa5',
-        pointBorderColor: '#0b5aa5',
-        pointRadius: 4.5,
-        pointHoverRadius: 4.5,
-        borderWidth: 2,
-        tension: 0,
-        fill: false
-      },
-      {
-        label: 'Media',
-        data: [24],
-        borderColor: '#c80000',
-        backgroundColor: '#c80000',
-        pointRadius: 0,
-        borderWidth: 2,
-        tension: 0,
-        fill: false
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        labels: {
-          usePointStyle: true,
-          boxWidth: 10,
-          color: '#333',
-          font: {
-            size: 16
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Algoritmi', 'Mat. discreta'],
+        datasets: [
+          {
+            label: 'Voto',
+            data: [24, 18],
+            borderColor: '#0b5aa5',
+            backgroundColor: '#0b5aa5',
+            pointBackgroundColor: '#0b5aa5',
+            pointBorderColor: '#0b5aa5',
+            pointRadius: 4.5,
+            pointHoverRadius: 4.5,
+            borderWidth: 2,
+            tension: 0,
+            fill: false
           },
-          padding: 20
-        }
+          {
+            label: 'Media',
+            data: [24, 21],
+            borderColor: '#c80000',
+            backgroundColor: '#c80000',
+            pointRadius: 0,
+            borderWidth: 2,
+            tension: 0,
+            fill: false
+          }
+        ]
       },
-      tooltip: { enabled: true }
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-        border: { display: false },
-        ticks: { display: false }
-      },
-      y: {
-        min: 20,
-        max: 30,
-        ticks: {
-          stepSize: 2,
-          color: '#666',
-          font: {
-            size: 15
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              usePointStyle: true,
+              boxWidth: 10,
+              color: '#333',
+              font: {
+                size: 16
+              },
+              padding: 20
+            }
           },
-          padding: 10
+          tooltip: { enabled: true }
         },
-        border: { display: false },
-        grid: {
-          color: '#d6d6d6',
-          lineWidth: 1.2
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: {
+              color: '#666',
+              font: {
+                size: 13
+              }
+            }
+          },
+          y: {
+            min: 18,
+            max: 30,
+            ticks: {
+              stepSize: 2,
+              color: '#666',
+              font: {
+                size: 15
+              },
+              padding: 10
+            },
+            border: { display: false },
+            grid: {
+              color: '#d6d6d6',
+              lineWidth: 1.2
+            }
+          }
         }
       }
-    }
-  }
-});
-</script>
+    });
+  </script>
 </body>
 </html>
