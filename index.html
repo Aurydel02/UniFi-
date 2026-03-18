@@ -1322,86 +1322,106 @@
       }
     });
 
-    const lineCtx = document.getElementById('lineChart').getContext('2d');
-    new Chart(lineCtx, {
-      type: 'line',
-      data: {
-        labels: ['Algoritmi', 'Mat. discreta'],
-        datasets: [
-          {
-            label: 'Voto',
-            data: [24, 18],
-            borderColor: '#0b5aa5',
-            backgroundColor: '#0b5aa5',
-            pointBackgroundColor: '#0b5aa5',
-            pointBorderColor: '#0b5aa5',
-            pointRadius: 4.5,
-            pointHoverRadius: 4.5,
-            borderWidth: 2,
-            tension: 0,
-            fill: false
-          },
-          {
-            label: 'Media',
-            data: [24, 21],
-            borderColor: '#c80000',
-            backgroundColor: '#c80000',
-            pointRadius: 0,
-            borderWidth: 2,
-            tension: 0,
-            fill: false
-          }
-        ]
+    <script>
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+
+new Chart(lineCtx, {
+  type: 'line',
+  data: {
+    labels: ['', ''],
+    datasets: [
+      {
+        label: 'Voto',
+        data: [24, 18],
+        borderColor: '#0b5aa5',
+        backgroundColor: '#0b5aa5',
+        pointBackgroundColor: '#0b5aa5',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 6,
+        borderWidth: 2.5,
+        tension: 0,
+        fill: false
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 10,
-              color: '#333',
-              font: {
-                size: 16
-              },
-              padding: 20
-            }
-          },
-          tooltip: { enabled: true }
-        },
-        scales: {
-          x: {
-            grid: { display: false },
-            border: { display: false },
-            ticks: {
-              color: '#666',
-              font: {
-                size: 13
-              }
-            }
-          },
-          y: {
-            min: 18,
-            max: 30,
-            ticks: {
-              stepSize: 2,
-              color: '#666',
-              font: {
-                size: 15
-              },
-              padding: 10
-            },
-            border: { display: false },
-            grid: {
-              color: '#d6d6d6',
-              lineWidth: 1.2
-            }
+      {
+        label: 'Media',
+        data: [21, 21],
+        borderColor: '#c80000',
+        backgroundColor: '#c80000',
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0,
+        fill: false
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        align: 'center',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+          boxWidth: 10,
+          padding: 20,
+          color: '#333',
+          font: {
+            size: 16,
+            weight: '500'
           }
         }
+      },
+      tooltip: {
+        enabled: true
       }
-    });
+    },
+    layout: {
+      padding: {
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 0
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false
+        },
+        border: {
+          display: false
+        },
+        ticks: {
+          display: false
+        }
+      },
+      y: {
+        min: 20,
+        max: 30,
+        ticks: {
+          stepSize: 2,
+          color: '#7a7a7a',
+          font: {
+            size: 14
+          }
+        },
+        grid: {
+          color: '#e0e0e0',
+          lineWidth: 1
+        },
+        border: {
+          display: false
+        }
+      }
+    }
+  }
+});
+</script>
   </script>
 </body>
 </html>
