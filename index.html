@@ -1323,102 +1323,105 @@
     });
 
     const lineCtx = document.getElementById('lineChart').getContext('2d');
-    new Chart(lineCtx, {
-      type: 'line',
-      data: {
-        labels: ['', ''],
-        datasets: [
-          {
-            label: 'Voto',
-            data: [24, 18],
-            borderColor: '#0b5aa5',
-            backgroundColor: '#0b5aa5',
-            pointBackgroundColor: '#0b5aa5',
-            pointBorderColor: '#ffffff',
-            pointBorderWidth: 2,
-            pointRadius: 6,
-            pointHoverRadius: 6,
-            borderWidth: 2.5,
-            tension: 0,
-            fill: false
-          },
-          {
-            label: 'Media',
-            data: [21, 21],
-            borderColor: '#c80000',
-            backgroundColor: '#c80000',
-            borderWidth: 2,
-            pointRadius: 0,
-            tension: 0,
-            fill: false
-          }
-        ]
+new Chart(lineCtx, {
+  type: 'line',
+  data: {
+    labels: ['', ''],
+    datasets: [
+      {
+        label: 'Voto',
+        data: [24, 18],
+        borderColor: '#0b5aa5',
+        backgroundColor: '#0b5aa5',
+        pointBackgroundColor: '#0b5aa5',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 6,
+        borderWidth: 2.5,
+        tension: 0,
+        fill: false
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-            align: 'center',
-            labels: {
-              usePointStyle: true,
-              pointStyle: 'circle',
-              boxWidth: 10,
-              padding: 20,
-              color: '#333',
-              font: {
-                size: 16,
-                weight: '500'
-              }
-            }
+      {
+        label: 'Media',
+        data: [21, 21],
+        borderColor: '#c80000',
+        backgroundColor: '#c80000',
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderWidth: 2,
+        tension: 0,
+        fill: false
+      },
+      {
+        label: '18',
+        data: [18, 18],
+        borderColor: '#8a8a8a',
+        backgroundColor: '#8a8a8a',
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderWidth: 2,
+        tension: 0,
+        fill: false
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        align: 'center',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'line',
+          boxWidth: 18,
+          boxHeight: 3,
+          color: '#333',
+          font: {
+            size: 15
           },
-          tooltip: {
-            enabled: true
-          }
-        },
-        layout: {
-          padding: {
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 0
-          }
-        },
-        scales: {
-          x: {
-            grid: {
-              display: false
-            },
-            border: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
+          padding: 16
+        }
+      },
+      tooltip: { enabled: true }
+    },
+    layout: {
+      padding: {
+        top: 8,
+        left: 6,
+        right: 6,
+        bottom: 0
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: { display: false }
+      },
+      y: {
+        min: 18,
+        max: 24,
+        ticks: {
+          stepSize: 1,
+          color: '#666',
+          font: {
+            size: 14
           },
-          y: {
-            min: 20,
-            max: 30,
-            ticks: {
-              stepSize: 2,
-              color: '#7a7a7a',
-              font: {
-                size: 14
-              }
-            },
-            grid: {
-              color: '#e0e0e0',
-              lineWidth: 1
-            },
-            border: {
-              display: false
-            }
-          }
+          padding: 8
+        },
+        border: { display: false },
+        grid: {
+          color: '#d6d6d6',
+          lineWidth: 1
         }
       }
-    });
+    }
+  }
+});
   </script>
 </body>
 </html>
